@@ -1,43 +1,50 @@
 int x;
-int startx=150;
-int starty=0;
-int endx;
-int endy;
+int sx=150;
+int sy=0;
+int ex=150;
+int ey=0;
 void setup()
 {
   size(300,500);
   noLoop();
-  background(0);
 }
 void draw()
 {
-  probe();
-  strokeWeight(5);
+  background(0);
+  strokeWeight(10);
   stroke(255,255,0);
-  while(starty>500)
+  while(sy<500)
   {
-    endx=startx+((int)(Math.random()*100));
-    endy=starty+((int)(Math.random()*100));
-    line(startx,starty,endx,endy);
-    startx=endx;
-    starty=endy;
+    ex=sx+((int)((Math.random()*60)-30));
+    ey=sy+((int)(Math.random()*81));
+    line(sx,sy,ex,ey);
+    sx=ex;
+    sy=ey;
   }
- 
+  probe();
+  if (ex<215 && ex>85)
+  { stroke(255,255,0);
+  strokeWeight(12);
+  noFill();
+  arc(150,500,130,130,PI,2*PI);
+  fill(255,255,0);
+  textSize(30);
+  text("BZZ",125,490);
+  }
+  
 }
 
-void bright()
-{
-  stroke(255,255,0);
-  strokeWeight(15);
-  noFill();
-  arc(150,500,200,200,PI,2*PI);
-}
 void probe()
 {
-  ellipse(150,500,200,200);
-  stroke(0);
+  fill(255);
+  noStroke();
+  ellipse(150,500,130,130);
 }
 void mousePressed()
 {
+  sx=150;
+  sy=0;
+  ex=150;
+  ey=0;
   redraw();
 }
